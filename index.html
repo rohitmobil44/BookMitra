@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="BookMitra - Best book recommendations for Class 9 & 10 students. Find NCERT, CBSE books at best prices from Flipkart.">
+  <meta name="keywords" content="class 9 books, class 10 books, NCERT books, study material, book recommendations, affiliate">
+  <meta name="author" content="Rohit Choudhary">
+  <meta name="robots" content="index, follow">
+  <title>BookMitra | Smart Books for Class 9 & 10</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Analytics placeholder -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefefe;
+      color: #1a2a3f;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* sticky navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      z-index: 1000;
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo h2 {
+      font-weight: 800;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #1E3A8A, #2B6EB3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #2b6eb3;
+      border-bottom: 2px solid #2b6eb3;
+      padding-bottom: 4px;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #1e293b;
+    }
+
+    /* main container */
+    .pages-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      min-height: 65vh;
+    }
+
+    .page {
+      display: none;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .active-page {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* buttons */
+    .btn-primary {
+      background: linear-gradient(105deg, #1E3A8A, #2563eb);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(37,99,235,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #2563eb;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      border: 1px solid #eef2ff;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+    }
+
+    /* books grid */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .book-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .book-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      background: #eef2ff;
+    }
+
+    .book-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+
+    .book-price {
+      font-weight: 800;
+      color: #1e3a8a;
+      font-size: 1.1rem;
+      margin: 0.25rem 0;
+    }
+
+    .book-desc {
+      color: #475569;
+      margin: 0.5rem 0 1rem;
+      flex: 1;
+      font-size: 0.9rem;
+    }
+
+    .buy-btn {
+      background: #2874f0;
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+    }
+
+    .buy-btn:hover {
+      background: #1a5ec9;
+      transform: scale(0.98);
+    }
+
+    /* search bar */
+    .search-bar {
+      margin-bottom: 2rem;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 60px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    /* hero section */
+    .hero {
+      background: linear-gradient(120deg, #F0F7FF, #ffffff);
+      border-radius: 48px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(130deg, #0f2b3d, #1f6392);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* footer */
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 2.5rem 1.5rem 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      max-width: 500px;
+      border-top: 1px solid #2d3a5e;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* contact form */
+    .contact-form {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+
+    /* mobile responsiveness */
+    @media (max-width: 768px) {
+      .navbar { padding: 0.8rem 1.2rem; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+        background: white;
+        padding: 1rem;
+        border-radius: 24px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+      .pages-container {
+        padding: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .books-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .buy-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-container">
+    <div class="logo"><h2>📚 BookMitra</h2></div>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" data-page="home" class="nav-link active-link">Home</a></li>
+      <li><a href="#" data-page="about" class="nav-link">About</a></li>
+      <li><a href="#" data-page="contact" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="pages-container">
+  <!-- HOME PAGE -->
+  <div id="home" class="page active-page">
+    <div class="hero">
+      <h1>Find the Best Books <br> at the Best Prices</h1>
+      <p style="font-size:1.1rem; margin: 1rem 0;">Specially curated for Class 9 & 10 students — NCERT, Reference & Guides</p>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍 Search by title or description...">
+    </div>
+
+    <div id="booksContainer" class="books-grid">
+      <!-- Books will be dynamically rendered here -->
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div id="about" class="page">
+    <div class="card" style="max-width: 900px; margin: auto;">
+      <h1 style="font-size:2rem;">📖 About BookMitra</h1>
+      <p style="margin-top: 1rem; font-size:1.1rem;">BookMitra is a student-focused platform designed to make finding and buying books simple, affordable, and convenient.</p>
+      <p>We help students discover the best books for their studies, especially for Class 9 and Class 10. Our platform connects users with trusted online marketplaces like Flipkart.</p>
+      <p>Our mission is to support students by saving their time and helping them find the right study materials at the best prices.</p>
+      <p><strong>We do not directly sell books.</strong> We only recommend and redirect users to trusted platforms.</p>
+      <div style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.2rem;">
+        <p><i class="fas fa-user-graduate"></i> <strong>Founder:</strong> Rohit Choudhary</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT PAGE -->
+  <div id="contact" class="page">
+    <div class="contact-form">
+      <h2>📬 Get in touch</h2>
+      <p>Have questions or book suggestions? Write to us.</p>
+      <form id="contactForm">
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Full Name" autocomplete="name">
+          <div id="nameError" class="error-msg"></div>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email Address" autocomplete="email">
+          <div id="emailError" class="error-msg"></div>
+        </div>
+        <div class="form-group">
+          <textarea id="message" rows="4" placeholder="Your message..."></textarea>
+          <div id="msgError" class="error-msg"></div>
+        </div>
+        <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+      </form>
+      <div id="formFeedback" style="margin-top: 1rem; font-weight: 500;"></div>
+    </div>
+  </div>
+
+  <!-- PRIVACY POLICY PAGE (hidden link via footer) -->
+  <div id="privacy" class="page">
+    <div class="card" style="max-width: 1000px;">
+      <h1>🔒 Privacy Policy</h1>
+      <p><strong>Effective Date:</strong> March 2026</p>
+      <p>BookMitra respects your privacy. We do not directly collect personal data from users. Any information submitted via contact form is only used to respond to inquiries and is not stored permanently.</p>
+      <p>We use affiliate links to redirect users to third-party platforms (Flipkart). These platforms have their own privacy policies. We are not responsible for transactions, data collection, or purchases made on Flipkart.</p>
+      <p>By using this website, you agree to this policy and understand that external links may set cookies as per third-party policies.</p>
+      <p>For any concerns, please contact us through the contact page.</p>
+      <p style="margin-top: 1rem;">📌 <strong>Affiliate Disclosure:</strong> BookMitra participates in affiliate programs.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div>
+      <h3 style="color:white;">📚 BookMitra</h3>
+      <p>Your smart study companion</p>
+    </div>
+    <div class="footer-links">
+      <a href="#" data-page="home">Home</a>
+      <a href="#" data-page="about">About</a>
+      <a href="#" data-page="contact">Contact</a>
+      <a href="#" data-page="privacy">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="disclaimer">
+    <p>🔗 This website contains affiliate links. All external purchases are made on Flipkart.</p>
+    <p>© 2026 BookMitra — Empowering students with right books.</p>
+  </div>
+</footer>
+
+<script>
+  // ======================== BOOK DATA (REPLACE WITH YOUR OWN) ========================
+  const booksData = [
+    {
+      id: 1,
+      title: "NCERT Books Set For Class 9",
+      description: "NCERT Books Set For Class 9 English Medium Set Of 8 Books Paperback 1 January 2019 No, NCERT|New Latest Edition For 2025-2026 (NCERT)",
+      price: "₹591",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/k/3/i/-original-imahkkzp9sxtgy5r.jpeg?q=90",
+      flipkartLink: "https://fktr.in/Gdrquwa",
+      category: "class9"
+    },
+    {
+      id: 2,
+      title: "NCERT Books Set For Class 10",
+      description: "Class -10 Set Science, Math, Social Science, English -B, & Hindi -B Paperback, Ncert|New Latest Edition For 2025-2026 (Paperback, NCERT)",
+      price: "₹675",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/g/o/d/-original-imahkkzpmtzhnny5.jpeg?q=90",
+      flipkartLink: "https://fktr.in/abezqho",
+      category: "class10"
+    },
+    {
+      id: 3,
+      title: "Mathematics Textbook For Class 10",
+      description: " Mathematics Textbook For Class 10 - 1062 (Paperback, NCERT)",
+      price: "₹64",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/kcgk1ow0/regionalbooks/2/h/q/mathematics-textbook-for-class-10-1062-original-imafth5y6hcpqzwk.jpeg?q=90",
+      flipkartLink: "https://fktr.in/tCsMnZ0",
+      category: "class10"
+    },
+    {
+      id: 4,
+      title: " Science NCERT Textbook For Class 10",
+      description: "Science NCERT Textbook For Class 10 English Medium New Paperback, Experts Panel|New Latest Edition For 2025-2026 (Paperback, Experts' Panel)",
+      price: "₹99",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/h/w/8/-original-imahkkzpzuzqfzaw.jpeg?q=90",
+      flipkartLink: "https://fktr.in/mqnXX3n",
+      category: "class10"
+    },
+    {
+      id: 5,
+      title: "NCERT SCIENCE BOOK FOR Class 9",
+      description: "NCERT SCIENCE BOOK FOR CLASS-IX ( 9th ) (Paper, NCERT).",
+      price: "₹152",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/o/p/l/-original-imahhdqrfpszkz5a.jpeg?q=90",
+      flipkartLink: "https://fktr.in/EFwTkt5",
+      category: "class9"
+    },
+    {
+      id: 6,
+      title: "NCERT MATHEMATICS BOOK FOR Class 9",
+      description: "NCERT MATHEMATICS BOOK FOR CLASS-IX ( 9th ) (Paper, NCERT).",
+      price: "₹135",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/0/x/i/-original-imahkkzpzk4xsvej.jpeg?q=90",
+      flipkartLink: "https://fktr.in/R5stGlv",
+      category: "class9"
+    },
+    {
+      id: 7,
+      title: "Contemporary India 1 Textbook In Geography For Class 9 ",
+      description: "Contemporary India 1 Textbook In Geography For Class 9 (Paperback, Experts' Panel).",
+      price: "₹122",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4eha4w0/regionalbooks/d/h/r/contemporary-india-1-textbook-in-geography-for-class-9-original-imaev5fzgkhyzbm4.jpeg?q=90",
+      flipkartLink: "https://fktr.in/wxIEi9D",
+      category: "class9"
+    },
+    {
+      id: 8,
+      title: "Combo Of 4 Books Of SOCIAL SCIENCE For Class 10",
+      description: "Combo Of 4 Books Of SOCIAL SCIENCE For Class 10 NCERT HISTORY, GEOGRAPHY, CIVICS, ECONOMICS Paperback, NCERT|New Latest Edition For 2025-2026 (Paperback, NCERT).",
+      price: "₹317",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/f/6/i/-original-imah9xhyvzsk3hxf.jpeg?q=90",
+      flipkartLink: "https://fktr.in/Hjs8IEp",
+      category: "class10"
+    },
+    {
+      id: 9,
+      title: "Contemporary India Part 2 Textbook In Geography For Class 10 ",
+      description: " Contemporary India Part 2 Textbook In Geography For Class 10 (Paperback, Experts' Panel).",
+      price: "₹98",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4fwpzk0/regionalbooks/4/m/f/contemporary-india-part-2-textbook-in-geography-for-class-10-original-imaev5fzxmcjb5up.jpeg?q=90",
+      flipkartLink: "https://fktr.in/4nUb71A",
+      category: "class10"
+    },
+    {
+      id: 10,
+      title: " History India And The Contemporary World - Ll Class 10",
+      description: " History India And The Contemporary World - Ll Class 10th (Paperback, ncert).",
+      price: "₹54",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/regionalbooks/h/k/w/history-india-and-the-contemporary-world-ll-class-10th-original-imaeg4ygexchfn6c.jpeg?q=90",
+      flipkartLink: "https://fktr.in/yohrMFx",
+      category: "class10"
+    },
+    {
+      id: 11,
+      title: "Combo Of 4 Books Of SOCIAL SCIENCE For Class 9 ",
+      description: "Combo Of 4 Books Of SOCIAL SCIENCE For Class 9 NCERT( HISTORY, GEOGRAPHY, CIVICS, ECONOMICS) (Paperback, NCERT).",
+      price: "₹209",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/kfa0b680/regionalbooks/c/s/x/combo-of-4-books-of-social-science-for-class-9-ncert-history-original-imafvs6kdzsbemfr.jpeg?q=90",
+      flipkartLink: "https://fktr.in/hWkhKdy",
+      category: "class9"
+    },
+    {
+      id: 12,
+      title: "Ncert Social Science (Democrative Politics Part 1) Class 9",
+      description: " Ncert Social Science Civics (Democrative Politics Part 1) (Paperback, Ncert publication).",
+      price: "₹89",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/l4fxh8w0/regionalbooks/y/k/b/ncert-social-science-democrative-politics-part-1-original-imagfchs7pgfrrvn.jpeg?q=90",
+      flipkartLink: "https://fktr.in/xXXXL4Y",
+      category: "class9"
+    },
+    {
+      id: 13,
+      title: "Understanding Economic Development Social Science Textbook For Class 10",
+      description: "Understanding Economic Development Social Science Textbook For Class 10th (Paperback, Experts' Panel).",
+      price: "₹95",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4eha4w0/regionalbooks/c/2/w/understanding-economic-development-social-science-textbook-for-original-imaev5fzhxfkfhfp.jpeg?q=90",
+      flipkartLink: "https://fktr.in/70k2ixw",
+      category: "class10"
+    },
+    {
+      id: 14,
+      title: "Economics Textbook For Class 9",
+      description: " Economics Textbook For Class 9 (Paperback, Experts' Panel).",
+      price: "₹103",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4fwpzk0/regionalbooks/n/y/j/economics-textbook-for-class-9-original-imaev5fzdyzygqrz.jpeg?q=90",
+      flipkartLink: "https://fktr.in/qc330FL",
+      category: "class9"
+    },
+    {
+      id: 15,
+      title: "India And The Contemporary World 1 Textbook In History For Class 9",
+      description: " India And The Contemporary World 1 Textbook In History For Class 9 (Paperback, Experts' Panel).",
+      price: "₹105",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4eha4w0/regionalbooks/e/m/z/india-and-the-contemporary-world-1-textbook-in-history-for-class-original-imaev5fzg3cjfzc8.jpeg?q=90",
+      flipkartLink: "https://fktr.in/Akgp4Hs",
+      category: "class9"
+    },
+    {
+      id: 16,
+      title: "Shobhit Nirwan Unbarbaad ",
+      description: "Shobhit Nirwan Unbarbaad - Unbarbaad (English, Paperback, Nirwan Shobhit)  - Unbarbaad (English, Paperback, Nirwan Shobhit).",
+      price: "₹153",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/book/g/z/z/unbarbaad-for-those-who-feel-lost-by-shobhit-nirwan-original-imaheeygnfj5edy4.jpeg?q=90",
+      flipkartLink: "https://fktr.in/Wij03r4",
+      category: "class"
+    },
+   
+  ];
+
+  // Render books based on search
+  function renderBooks() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    let filtered = booksData;
+
+    if (searchTerm) {
+      filtered = filtered.filter(book =>
+        book.title.toLowerCase().includes(searchTerm) ||
+        book.description.toLowerCase().includes(searchTerm)
+      );
+    }
+
+    const container = document.getElementById('booksContainer');
+    if (!container) return;
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">No books match your search.</p>';
+      return;
+    }
+
+    container.innerHTML = filtered.map(book => `
+      <div class="card book-card">
+        <img class="book-image" src="${book.imageUrl}" alt="${book.title}" loading="lazy">
+        <div class="book-title">${book.title}</div>
+        <div class="book-price">${book.price}</div>
+        <div class="book-desc">${book.description}</div>
+        <a href="${book.flipkartLink}" target="_blank" rel="noopener sponsored" class="buy-btn">
+          <i class="fas fa-shopping-cart"></i> Buy Now on Flipkart
+        </a>
+        <small style="color:#6c757d; margin-top:8px; display:block; text-align:center;">🔗 Replace with affiliate link</small>
+      </div>
+    `).join('');
+  }
+
+  // Search input listener
+  document.getElementById('searchInput')?.addEventListener('input', renderBooks);
+
+  // ----------------------- PAGE SWITCHING -----------------------
+  const pages = ['home', 'about', 'contact', 'privacy'];
+  function showPage(pageId) {
+    pages.forEach(p => {
+      const el = document.getElementById(p);
+      if (el) el.classList.remove('active-page');
+    });
+    document.getElementById(pageId).classList.add('active-page');
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const linkPage = link.getAttribute('data-page');
+      if (linkPage === pageId) link.classList.add('active');
+      else link.classList.remove('active');
+    });
+
+    if (pageId === 'home') renderBooks();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = link.getAttribute('data-page');
+      if (page) showPage(page);
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
+
+  document.querySelectorAll('.footer-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pageVal = link.getAttribute('data-page');
+      if (pageVal) showPage(pageVal);
+    });
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger?.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // ----------------------- CONTACT FORM (Google Sheets) -----------------------
+  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbyUeOXD8o6mYYRtSd_j0YqPnBjenj2LH3nsGW_9lOWCCq1wu4zvDrjdAaXkmIBdpIk/exec"; // <-- REPLACE WITH YOUR URL
+
+  const contactForm = document.getElementById('contactForm');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+  const msgError = document.getElementById('msgError');
+  const formFeedback = document.getElementById('formFeedback');
+
+  contactForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let isValid = true;
+    nameError.innerText = '';
+    emailError.innerText = '';
+    msgError.innerText = '';
+    formFeedback.innerText = '';
+
+    const nameVal = nameInput.value.trim();
+    if (nameVal === '') {
+      nameError.innerText = 'Name is required';
+      isValid = false;
+    }
+    const emailVal = emailInput.value.trim();
+    const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+    if (emailVal === '') {
+      emailError.innerText = 'Email address required';
+      isValid = false;
+    } else if (!emailPattern.test(emailVal)) {
+      emailError.innerText = 'Enter a valid email';
+      isValid = false;
+    }
+    const msgVal = messageInput.value.trim();
+    if (msgVal === '') {
+      msgError.innerText = 'Please write a message';
+      isValid = false;
+    }
+
+    if (!isValid) {
+      formFeedback.innerHTML = '<span style="color:#e53e3e;">⚠️ Please fix errors above.</span>';
+      return;
+    }
+
+    if (GOOGLE_SHEETS_URL && GOOGLE_SHEETS_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL") {
+      try {
+        await fetch(GOOGLE_SHEETS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            name: nameVal,
+            email: emailVal,
+            message: msgVal,
+            timestamp: new Date().toISOString()
+          })
+        });
+        formFeedback.innerHTML = '<span style="color:#10b981;">✅ Message sent! We’ll get back to you soon.</span>';
+        contactForm.reset();
+      } catch (err) {
+        formFeedback.innerHTML = '<span style="color:#e53e3e;">❌ Error sending message. Please try again later.</span>';
+      }
+    } else {
+      formFeedback.innerHTML = '<span style="color:#10b981;">✅ Message sent! (Demo - configure Google Sheets URL)</span>';
+      contactForm.reset();
+    }
+    setTimeout(() => formFeedback.innerHTML = '', 5000);
+  });
+
+  // Initial render
+  window.addEventListener('DOMContentLoaded', () => {
+    renderBooks();
+    showPage('home');
+  });
+</script>
+</body>
+</html>
