@@ -3,18 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- SEO Meta Tags -->
   <meta name="description" content="BookMitra - Best book recommendations for Class 9 & 10 students. Find NCERT, CBSE books at best prices from Flipkart.">
-  <meta name="keywords" content="class 9 books, class 10 books, NCERT books, study material, book recommendations, affiliate">
+  <meta name="keywords" content="class 9 books, class 10 books, NCERT books, study material, book recommendations, affiliate, cbse, textbooks, school books">
   <meta name="author" content="Rohit Choudhary">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.bookmitra.com/">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.bookmitra.com/">
+  <meta property="og:title" content="BookMitra | Smart Books for Class 9 & 10">
+  <meta property="og:description" content="Find the best NCERT and reference books for Class 9 & 10 at the best prices. Shop now on Flipkart.">
+  <meta property="og:image" content="https://i.ibb.co/kVB04QdK/bookmitra-og.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BookMitra | Smart Books for Class 9 & 10">
+  <meta name="twitter:description" content="Find the best NCERT and reference books for Class 9 & 10 at the best prices. Shop now on Flipkart.">
+  <meta name="twitter:image" content="https://i.ibb.co/kVB04QdK/bookmitra-og.jpg">
+  
   <title>BookMitra | Smart Books for Class 9 & 10</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Analytics placeholder -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0M7XGFZS48"></script>
+  <!-- Google Analytics (replace with your own ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0M7XGFZS48"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -22,18 +36,6 @@
     gtag('config', 'G-0M7XGFZS48');
   </script>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
   <style>
     * {
       margin: 0;
@@ -243,16 +245,60 @@
     }
 
     /* search bar */
-    .search-bar {
+    .search-wrapper {
+      position: relative;
       margin-bottom: 2rem;
     }
-    .search-bar input {
-      width: 100%;
-      padding: 1rem 1.2rem;
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      background: white;
       border: 1px solid #e2e8f0;
       border-radius: 60px;
+      padding: 0.25rem 0.25rem 0.25rem 1rem;
+      transition: all 0.2s;
+    }
+    .search-bar:focus-within {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 1rem 0.5rem 1rem 0;
+      border: none;
+      outline: none;
       font-size: 1rem;
       font-family: inherit;
+      background: transparent;
+    }
+    .search-bar button {
+      background: #2563eb;
+      border: none;
+      border-radius: 40px;
+      padding: 0.7rem 1.2rem;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .search-bar button:hover {
+      background: #1e40af;
+    }
+    .clear-search {
+      background: transparent;
+      color: #6c757d;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      display: none;
+    }
+    .result-count {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #6c757d;
     }
 
     /* hero section */
@@ -271,6 +317,51 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+
+    /* About page - Image overlay */
+    .about-hero {
+      position: relative;
+      border-radius: 32px;
+      overflow: hidden;
+      margin: 1rem 0;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+    .about-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      z-index: 0;
+    }
+    .about-overlay {
+      position: relative;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(2px);
+      padding: 3rem 2rem;
+      border-radius: 32px;
+      color: white;
+      text-align: center;
+    }
+    .about-overlay h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    .about-overlay p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 1rem;
+    }
+    @media (max-width: 768px) {
+      .about-overlay { padding: 2rem 1rem; }
+      .about-overlay h1 { font-size: 1.8rem; }
     }
 
     /* footer */
@@ -381,7 +472,14 @@
         grid-template-columns: 1fr;
         gap: 1.2rem;
       }
-      .buy-btn {
+      .search-bar {
+        flex-wrap: wrap;
+      }
+      .search-bar input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      .search-bar button {
         width: 100%;
       }
     }
@@ -409,8 +507,14 @@
       <p style="font-size:1.1rem; margin: 1rem 0;">Specially curated for Class 9 & 10 students — NCERT, Reference & Guides</p>
     </div>
 
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="🔍 Search by title or description...">
+    <div class="search-wrapper">
+      <div class="search-bar">
+        <i class="fas fa-search" style="color:#94a3b8;"></i>
+        <input type="text" id="searchInput" placeholder="Search by title, description, or keywords...">
+        <button id="clearSearchBtn" class="clear-search"><i class="fas fa-times"></i></button>
+        <button id="searchBtn"><i class="fas fa-arrow-right"></i> Search</button>
+      </div>
+      <div class="result-count" id="resultCount"></div>
     </div>
 
     <div id="booksContainer" class="books-grid">
@@ -418,16 +522,19 @@
     </div>
   </div>
 
-  <!-- ABOUT PAGE -->
+  <!-- ABOUT PAGE with image overlay -->
   <div id="about" class="page">
-    <div class="card" style="max-width: 900px; margin: auto;">
-      <h1 style="font-size:2rem;">📖 About BookMitra</h1>
-      <p style="margin-top: 1rem; font-size:1.1rem;">BookMitra is a student-focused platform designed to make finding and buying books simple, affordable, and convenient.</p>
-      <p>We help students discover the best books for their studies, especially for Class 9 and Class 10. Our platform connects users with trusted online marketplaces like Flipkart.</p>
-      <p>Our mission is to support students by saving their time and helping them find the right study materials at the best prices.</p>
-      <p><strong>We do not directly sell books.</strong> We only recommend and redirect users to trusted platforms.</p>
-      <div style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.2rem;">
-        <p><i class="fas fa-user-graduate"></i> <strong>Founder:</strong> Rohit Choudhary</p>
+    <div class="about-hero">
+      <img class="about-bg" src="https://i.ibb.co/kVB04QdK/bookmitra-og.jpg" alt="BookMitra Background" loading="lazy">
+      <div class="about-overlay">
+        <h1>📖 About BookMitra</h1>
+        <p>BookMitra is a student-focused platform designed to make finding and buying books simple, affordable, and convenient.</p>
+        <p>We help students discover the best books for their studies, especially for Class 9 and Class 10. Our platform connects users with trusted online marketplaces like Flipkart.</p>
+        <p>Our mission is to support students by saving their time and helping them find the right study materials at the best prices.</p>
+        <p><strong>We do not directly sell books.</strong> We only recommend and redirect users to trusted platforms.</p>
+        <div style="margin-top: 1rem;">
+          <p><i class="fas fa-user-graduate"></i> <strong>Founder:</strong> Rohit Choudhary</p>
+        </div>
       </div>
     </div>
   </div>
@@ -490,7 +597,7 @@
 </footer>
 
 <script>
-  // ======================== BOOK DATA (REPLACE WITH YOUR OWN) ========================
+  // ======================== BOOK DATA (with enhanced keywords) ========================
   const booksData = [
     {
       id: 1,
@@ -499,7 +606,8 @@
       price: "₹591",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/k/3/i/-original-imahkkzp9sxtgy5r.jpeg?q=90",
       flipkartLink: "https://fktr.in/Gdrquwa",
-      category: "class9"
+      category: "class9",
+      keywords: ["NCERT", "class9", "set", "all subjects", "CBSE", "textbook", "school books", "study material", "cbse class 9", "9th class", "ncert set"]
     },
     {
       id: 2,
@@ -508,7 +616,8 @@
       price: "₹675",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/g/o/d/-original-imahkkzpmtzhnny5.jpeg?q=90",
       flipkartLink: "https://fktr.in/abezqho",
-      category: "class10"
+      category: "class10",
+      keywords: ["NCERT", "class10", "set", "all subjects", "CBSE", "textbook", "school books", "study material", "cbse class 10", "10th class", "ncert set"]
     },
     {
       id: 3,
@@ -517,7 +626,8 @@
       price: "₹64",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/kcgk1ow0/regionalbooks/2/h/q/mathematics-textbook-for-class-10-1062-original-imafth5y6hcpqzwk.jpeg?q=90",
       flipkartLink: "https://fktr.in/tCsMnZ0",
-      category: "class10"
+      category: "class10",
+      keywords: ["maths", "mathematics", "NCERT", "class10", "textbook", "ganit", "cbse math", "10th maths"]
     },
     {
       id: 4,
@@ -526,7 +636,8 @@
       price: "₹99",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/h/w/8/-original-imahkkzpzuzqfzaw.jpeg?q=90",
       flipkartLink: "https://fktr.in/mqnXX3n",
-      category: "class10"
+      category: "class10",
+      keywords: ["science", "NCERT", "class10", "textbook", "vigyan", "cbse science", "10th science"]
     },
     {
       id: 5,
@@ -535,7 +646,8 @@
       price: "₹152",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/o/p/l/-original-imahhdqrfpszkz5a.jpeg?q=90",
       flipkartLink: "https://fktr.in/EFwTkt5",
-      category: "class9"
+      category: "class9",
+      keywords: ["science", "NCERT", "class9", "textbook", "vigyan", "cbse science", "9th science"]
     },
     {
       id: 6,
@@ -544,7 +656,8 @@
       price: "₹135",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/0/x/i/-original-imahkkzpzk4xsvej.jpeg?q=90",
       flipkartLink: "https://fktr.in/R5stGlv",
-      category: "class9"
+      category: "class9",
+      keywords: ["maths", "mathematics", "NCERT", "class9", "textbook", "ganit", "cbse math", "9th maths"]
     },
     {
       id: 7,
@@ -553,7 +666,8 @@
       price: "₹122",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4eha4w0/regionalbooks/d/h/r/contemporary-india-1-textbook-in-geography-for-class-9-original-imaev5fzgkhyzbm4.jpeg?q=90",
       flipkartLink: "https://fktr.in/wxIEi9D",
-      category: "class9"
+      category: "class9",
+      keywords: ["geography", "social science", "contemporary india", "class9", "bhugol", "cbse geography"]
     },
     {
       id: 8,
@@ -562,7 +676,8 @@
       price: "₹317",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/f/6/i/-original-imah9xhyvzsk3hxf.jpeg?q=90",
       flipkartLink: "https://fktr.in/Hjs8IEp",
-      category: "class10"
+      category: "class10",
+      keywords: ["social science", "history", "geography", "civics", "economics", "class10", "sst", "samajik vigyan"]
     },
     {
       id: 9,
@@ -571,7 +686,8 @@
       price: "₹98",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4fwpzk0/regionalbooks/4/m/f/contemporary-india-part-2-textbook-in-geography-for-class-10-original-imaev5fzxmcjb5up.jpeg?q=90",
       flipkartLink: "https://fktr.in/4nUb71A",
-      category: "class10"
+      category: "class10",
+      keywords: ["geography", "contemporary india", "class10", "bhugol", "cbse geography"]
     },
     {
       id: 10,
@@ -580,7 +696,8 @@
       price: "₹54",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/regionalbooks/h/k/w/history-india-and-the-contemporary-world-ll-class-10th-original-imaeg4ygexchfn6c.jpeg?q=90",
       flipkartLink: "https://fktr.in/yohrMFx",
-      category: "class10"
+      category: "class10",
+      keywords: ["history", "india", "contemporary world", "class10", "itihas", "cbse history"]
     },
     {
       id: 11,
@@ -589,7 +706,8 @@
       price: "₹209",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/kfa0b680/regionalbooks/c/s/x/combo-of-4-books-of-social-science-for-class-9-ncert-history-original-imafvs6kdzsbemfr.jpeg?q=90",
       flipkartLink: "https://fktr.in/hWkhKdy",
-      category: "class9"
+      category: "class9",
+      keywords: ["social science", "history", "geography", "civics", "economics", "class9", "sst", "samajik vigyan"]
     },
     {
       id: 12,
@@ -598,7 +716,8 @@
       price: "₹89",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/l4fxh8w0/regionalbooks/y/k/b/ncert-social-science-democrative-politics-part-1-original-imagfchs7pgfrrvn.jpeg?q=90",
       flipkartLink: "https://fktr.in/xXXXL4Y",
-      category: "class9"
+      category: "class9",
+      keywords: ["civics", "democratic politics", "class9", "nagrik shastra", "political science"]
     },
     {
       id: 13,
@@ -607,7 +726,8 @@
       price: "₹95",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4eha4w0/regionalbooks/c/2/w/understanding-economic-development-social-science-textbook-for-original-imaev5fzhxfkfhfp.jpeg?q=90",
       flipkartLink: "https://fktr.in/70k2ixw",
-      category: "class10"
+      category: "class10",
+      keywords: ["economics", "economic development", "class10", "arthashastra", "cbse economics"]
     },
     {
       id: 14,
@@ -616,7 +736,8 @@
       price: "₹103",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4fwpzk0/regionalbooks/n/y/j/economics-textbook-for-class-9-original-imaev5fzdyzygqrz.jpeg?q=90",
       flipkartLink: "https://fktr.in/qc330FL",
-      category: "class9"
+      category: "class9",
+      keywords: ["economics", "class9", "arthashastra"]
     },
     {
       id: 15,
@@ -625,7 +746,8 @@
       price: "₹105",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/j4eha4w0/regionalbooks/e/m/z/india-and-the-contemporary-world-1-textbook-in-history-for-class-original-imaev5fzg3cjfzc8.jpeg?q=90",
       flipkartLink: "https://fktr.in/Akgp4Hs",
-      category: "class9"
+      category: "class9",
+      keywords: ["history", "india", "contemporary world", "class9", "itihas"]
     },
     {
       id: 16,
@@ -634,34 +756,158 @@
       price: "₹153",
       imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/book/g/z/z/unbarbaad-for-those-who-feel-lost-by-shobhit-nirwan-original-imaheeygnfj5edy4.jpeg?q=90",
       flipkartLink: "https://fktr.in/Wij03r4",
-      category: "class"
+      category: "class",
+      keywords: ["motivation", "shobhit nirwan", "unbarbaad", "self help", "inspiration"]
     },
-   
+    {
+      id: 17,
+      title: "NCERT Solutions Science, Mathematics Class 10",
+      description: " NCERT Solutions Science, Mathematics Class 10th ( Combo Set Of 2 Books ) (Paperback, Arihant expert).",
+      price: "₹240",
+      imageUrl: "https://rukminim1.flixcart.com/image/1024/1024/xif0q/regionalbooks/h/f/i/ncert-solutions-science-mathematics-class-10th-combo-set-of-2-original-imagr75qj4b2zcwv.jpeg?q=90",
+      flipkartLink: "https://fktr.in/vTUwZyD",
+      category: "class10",
+      keywords: ["solutions", "science", "maths", "arihant", "class10", "ncert solutions", "question bank"]
+    },
+    {
+      id: 18,
+      title: "Arihant NCERT Exemplar Problems Solutions Mathematics Class 10",
+      description: "Arihant NCERT Exemplar Problems Solutions Mathematics Class 10th Paperback (Paperback, Neha Tyagi).",
+      price: "₹237",
+      imageUrl: "https://rukminim2.flixcart.com/image/1024/1024/xif0q/regionalbooks/b/m/n/arihant-ncert-exemplar-problems-solutions-mathematics-class-10th-original-imagqp8dexyssvgf.jpeg?q=90",
+      flipkartLink: "https://fktr.in/sHa6oL3",
+      category: "class10",
+      keywords: ["exemplar", "problems", "solutions", "maths", "arihant", "class10", "ncert exemplar"]
+    },
+    {
+      id: 19,
+      title: "PW Udaan For Class 10 Physics, Chemistry, Mathematics Part A & B, Biology.",
+      description: "PW Udaan For Class 10 Physics, Chemistry, Mathematics Part A & B, Biology, Competitive Booklet Combo Set of 6 Books (2026 Edition) (Paperback, PW).",
+      price: "₹2,034",
+      imageUrl: "https://rukminim1.flixcart.com/image/1024/1024/xif0q/book/n/a/u/pw-udaan-for-class-10-physics-chemistry-mathematics-part-a-b-original-imahh3pwxhey4h2n.jpeg?q=90",
+      flipkartLink: "https://fktr.in/Y9fQMNQ",
+      category: "class10",
+      keywords: ["physics", "biology", "set", "maths", "class10", "pw udaan", "pw", "chemistry", "competitive book", "2026 edition", "u", "uddan", "physics wallah"]
+    },
+    {
+      id: 20,
+      title: "Cornerstone Atomic Habits",
+      description: "Cornerstone Atomic Habits  - For An Easy & Proven Way to Build Good Habits & Break Bad Habits (English, Paperback, Clear James).",
+      price: "₹259",
+      imageUrl: "https://rukminim1.flixcart.com/image/1024/1024/xif0q/book/m/a/k/atomic-habits-original-imahghgc2ycfec9a.jpeg?q=90",
+      flipkartLink: "https://fktr.in/tY29111",
+      category: "knowledge",
+      keywords: ["atomic habits", "james clear", "self improvement", "habits", "productivity"]
+    },
+    {
+      id: 21,
+      title: "AGRAWAL PUBLICATIONS Educart PRAYAS CBSE Class 10 ",
+      description: "AGRAWAL PUBLICATIONS Educart PRAYAS CBSE Class 10 (Introducing revolutionary marks increment concept - NCERT CHITS)  - Sample Paper Class 10 2026 (English, Paperback, Rajput Digraj Singh).",
+      price: "₹641",
+      imageUrl: "https://rukminim1.flixcart.com/image/1024/1024/xif0q/book/n/p/7/educart-prayas-cbse-class-10-for-2026-introducing-revolutionary-original-imahk55yfnwc96e7.jpeg?q=90",
+      flipkartLink: "https://fktr.in/D84JMtZ",
+      category: "class10",
+      keywords: ["educart", "prayas", "sample paper", "class10", "digraj singh rajput", "cbse sample paper"]
+    },
+    {
+      id: 22,
+      title: "AGRAWAL PUBLICATIONS Educart Cbse Question Bank Class 10",
+      description: "AGRAWAL PUBLICATIONS Educart Cbse Question Bank Class 10 Social Science 2025-26 (English, Paperback, Rajput Digraj Singh).",
+      price: "₹658",
+      imageUrl: "https://rukminim1.flixcart.com/image/1024/1024/xif0q/book/u/y/m/educart-cbse-question-bank-class-10-social-science-2025-26-on-original-imahcm88ghum8shg.jpeg?q=90",
+      flipkartLink: "https://fktr.in/h1Eci7R",
+      category: "class10",
+      keywords: ["educart", "question bank", "class10", "social science", "digraj singh rajput"]
+    },
+    {
+      id: 23,
+      title: "Oswaal Books And Learning Private Limited CBSE Question Bank SOLVED PAPERS Class 10",
+      description: "Oswaal Books And Learning Private Limited CBSE Question Bank SOLVED PAPERS Class 10 Science For 2026 Exam (Paperback, Oswaal Editorial Board).",
+      price: "₹596",
+      imageUrl: "https://rukminim1.flixcart.com/image/1024/1024/xif0q/book/i/d/c/cbse-question-bank-solved-papers-class-10-science-for-2026-exam-original-imahbh6s7zf9wxsk.jpeg?q=90",
+      flipkartLink: "https://fktr.in/Nnpla3H",
+      category: "class10",
+      keywords: ["oswal", "oswaal", "question bank", "class10", "science", "Paperback"]
+    },
   ];
 
-  // Render books based on search
-  function renderBooks() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    let filtered = booksData;
+  // --- Enhanced search with synonyms and misspellings ---
+  // Mapping of common misspellings and synonyms
+  const synonymMap = {
+    "maths": ["mathematics", "math", "ganit"],
+    "science": ["vigyan", "physics", "chemistry", "biology", "scince"],
+    "ncert": ["ncrt", "ncer", "ncertt"],
+    "class9": ["class 9", "9th", "class-9", "ix", "ninth"],
+    "class10": ["class 10", "10th", "class-10", "x", "tenth"],
+    "cbse": ["central board", "cbse board"],
+    "history": ["itihas"],
+    "geography": ["bhugol"],
+    "economics": ["arthashastra"],
+    "civics": ["nagrik shastra", "political science"],
+    "sst": ["social science", "samajik vigyan"],
+    "pw": ["physics wallah"],
+    "udaan": ["udan", "uda", "udaan"],
+    "atomic": ["atomic habit"],
+  };
 
-    if (searchTerm) {
-      filtered = filtered.filter(book =>
-        book.title.toLowerCase().includes(searchTerm) ||
-        book.description.toLowerCase().includes(searchTerm)
-      );
+  function expandSearchTerm(term) {
+    const lower = term.toLowerCase().trim();
+    const expanded = new Set([lower]);
+    // Check each word in the term
+    const words = lower.split(/\s+/);
+    for (let word of words) {
+      if (synonymMap[word]) {
+        synonymMap[word].forEach(syn => expanded.add(syn));
+      }
+      // Also check for partial matches: if term contains "math", add "mathematics"
+      for (let key in synonymMap) {
+        if (lower.includes(key)) {
+          synonymMap[key].forEach(syn => expanded.add(syn));
+        }
+      }
+    }
+    return Array.from(expanded);
+  }
+
+  function matchesSearchEnhanced(book, searchTerms) {
+    const bookText = (book.title + " " + book.description).toLowerCase();
+    const bookKeywords = (book.keywords || []).map(k => k.toLowerCase());
+    // For each expanded term, check if any matches
+    for (let term of searchTerms) {
+      if (bookText.includes(term)) return true;
+      if (bookKeywords.some(kw => kw.includes(term))) return true;
+    }
+    return false;
+  }
+
+  // DOM elements
+  const searchInput = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearSearchBtn');
+  const searchBtn = document.getElementById('searchBtn');
+  const resultCountSpan = document.getElementById('resultCount');
+  const booksContainer = document.getElementById('booksContainer');
+
+  let debounceTimer;
+
+  function renderBooks(searchTerm = '') {
+    let filtered = booksData;
+    if (searchTerm.trim()) {
+      const expandedTerms = expandSearchTerm(searchTerm);
+      filtered = filtered.filter(book => matchesSearchEnhanced(book, expandedTerms));
     }
 
-    const container = document.getElementById('booksContainer');
-    if (!container) return;
+    resultCountSpan.textContent = filtered.length === 0 
+      ? 'No books found' 
+      : `Found ${filtered.length} book${filtered.length !== 1 ? 's' : ''}`;
 
     if (filtered.length === 0) {
-      container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">No books match your search.</p>';
+      booksContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:2rem;">📭 No books match your search. Try different keywords.</p>';
       return;
     }
 
-    container.innerHTML = filtered.map(book => `
+    booksContainer.innerHTML = filtered.map(book => `
       <div class="card book-card">
-        <img class="book-image" src="${book.imageUrl}" alt="${book.title}" loading="lazy">
+        <img class="book-image" src="${book.imageUrl}" alt="${book.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x280?text=Image+Not+Found'">
         <div class="book-title">${book.title}</div>
         <div class="book-price">${book.price}</div>
         <div class="book-desc">${book.description}</div>
@@ -673,8 +919,28 @@
     `).join('');
   }
 
-  // Search input listener
-  document.getElementById('searchInput')?.addEventListener('input', renderBooks);
+  function handleSearch() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const term = searchInput.value;
+      renderBooks(term);
+      clearBtn.style.display = term ? 'inline-block' : 'none';
+    }, 300);
+  }
+
+  function clearSearch() {
+    searchInput.value = '';
+    renderBooks('');
+    clearBtn.style.display = 'none';
+    searchInput.focus();
+  }
+
+  searchInput.addEventListener('input', handleSearch);
+  searchBtn.addEventListener('click', () => {
+    clearTimeout(debounceTimer);
+    renderBooks(searchInput.value);
+  });
+  clearBtn.addEventListener('click', clearSearch);
 
   // ----------------------- PAGE SWITCHING -----------------------
   const pages = ['home', 'about', 'contact', 'privacy'];
@@ -691,7 +957,7 @@
       else link.classList.remove('active');
     });
 
-    if (pageId === 'home') renderBooks();
+    if (pageId === 'home') renderBooks(searchInput.value);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -712,7 +978,6 @@
     });
   });
 
-  // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   hamburger?.addEventListener('click', () => {
@@ -720,7 +985,7 @@
   });
 
   // ----------------------- CONTACT FORM (Google Sheets) -----------------------
-  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbyUeOXD8o6mYYRtSd_j0YqPnBjenj2LH3nsGW_9lOWCCq1wu4zvDrjdAaXkmIBdpIk/exec"; // <-- REPLACE WITH YOUR URL
+  const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbyUeOXD8o6mYYRtSd_j0YqPnBjenj2LH3nsGW_9lOWCCq1wu4zvDrjdAaXkmIBdpIk/exec";
 
   const contactForm = document.getElementById('contactForm');
   const nameInput = document.getElementById('name');
@@ -789,10 +1054,10 @@
     setTimeout(() => formFeedback.innerHTML = '', 5000);
   });
 
-  // Initial render
   window.addEventListener('DOMContentLoaded', () => {
-    renderBooks();
+    renderBooks('');
     showPage('home');
+    clearBtn.style.display = 'none';
   });
 </script>
 </body>
